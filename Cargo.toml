@@ -1,0 +1,33 @@
+[package]
+name = "clipflow"
+version = "0.1.0"
+edition = "2024"
+description = "Minimalist Linux clipboard manager built with Rust and GPUI"
+
+[dependencies]
+anyhow = "1"
+ashpd = { version = "0.13", default-features = false, features = ["async-io", "global_shortcuts"] }
+async-channel = "2"
+blake3 = "1"
+chrono = "0.4"
+dirs = "6"
+futures-util = "0.3"
+gpui = { path = "vendor/gpui" }
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "webp", "bmp", "gif"] }
+# Pin libc <= 0.2.189 so gpui 0.2.2's transitive `xattr 0.2.3` compiles on Linux (ENOATTR removed in 0.2.190).
+libc = ">=0.2.150, <=0.2.189"
+rusqlite = "0.38"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+smol = "2"
+unicode-segmentation = "1"
+wayland-client = "0.31"
+wayland-protocols-misc = { version = "0.3.12", features = ["client"] }
+wayland-protocols-wlr = { version = "0.3.12", features = ["client"] }
+wl-clipboard-rs = "0.9"
+x11rb = "0.13"
+zbus = { version = "5", default-features = false, features = ["async-io"] }
+
+[dev-dependencies]
+tempfile = "3"
